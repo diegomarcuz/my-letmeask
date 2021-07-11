@@ -10,7 +10,7 @@ This ideia was taken from [Rocketseat NLW](https://github.com/rocketseat-educati
 
 
 ## Preview
-- https://my-letmeask-e598m8rb3-diegomarcuz.vercel.app/
+- https://my-letmeask.vercel.app/
 
 
 ## Technologies
