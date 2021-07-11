@@ -1,5 +1,6 @@
 import { useRouter } from "next/router"
 import Image from 'next/image'
+import Link from 'next/link'
 import { styled } from '../../../stitches.config';
 import toast, { Toaster } from 'react-hot-toast'
 
@@ -109,10 +110,13 @@ export default function AdminRoom() {
   return (
     <>
     
-      <Header>
-        <a href="/">
-          <Image src={logoImg} alt="" />
-        </a>
+      <Header>  
+        <Link href="/">
+          <a >
+            <Image src={logoImg} alt="" />
+          </a>
+        </Link>
+        
         <HeaderActions>
           <RoomCode code={roomId} />
           { (user?.id !== authorId) && !user  ? (
