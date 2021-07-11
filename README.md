@@ -21,7 +21,7 @@ This ideia was taken from [Rocketseat NLW](https://github.com/rocketseat-educati
 ## Technologies from the source idea
 - Firebase Authetication 
 - Firebase Realtime database
-- Firebase Sign in method with Google
+- Firebase Sign-in method with Google
 - Typescript
 
 ## Photos
