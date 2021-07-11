@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['googleusercontent.com'],
+    domains: ['lh3.googleusercontent.com'],
   },
 
 }
