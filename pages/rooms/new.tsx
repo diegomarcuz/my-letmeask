@@ -2,7 +2,10 @@ import { FormEvent, useState, useEffect } from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
 import Link from 'next/link'
-import { styled } from '@stitches/react';
+import toast, { Toaster } from 'react-hot-toast'
+import {BsChevronDown} from 'react-icons/bs'
+
+import { styled } from '../../stitches.config';
 
 import { Button } from '../../components/Button'
 import { useAuth } from '../../hooks/useAuth';
@@ -16,81 +19,124 @@ import { firebase } from '../../service/firebase'
 
 const Container = styled("div", {
   display: 'flex',
-  alignItems: 'stretch',
+  flexDirection: 'column',
   height: '100vh',
 
+  "@tablet": {
+    flexDirection: 'row',
 
-  aside: {
-    flex: 7,
-    background: '#835afd',
-    color: '#fff',
-    display: 'flex',
-    flexDirection: "column",
-    justifyContent: 'center',
-    padding: '120px 80px',
-
-
-    h1: {
-      lineHeight: '42px',
-      fontSize: '36px'
-    },
-    p: {
-      fontSize: '24px',
-      lineHeight: '32px',
-      marginTop: '16px',
-      color: '#f8f8f8'
-    }
   },
 
-  main: {
-    flex: 8,
-    padding: "0px 32px",
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+ 
 
-    h2: {
-      fontSize: '24px',
-      margin: '64px 0 24px'
-    },
-
-    form: {
-      display: 'flex',
-      flexDirection: 'column',
-      maxWidth: '320px',
-      width: "100%",
-      input: {
-        height: '50px',
-        borderRadius: '8px',
-        padding: '0 16px',
-        background: '#fff',
-        border: '1px solid #a8a8b3',
-      },
-
-      button: {
-        marginTop: '16px',
-      }
-    },
-    p: {
-      maxWidth: '320px',
-      width: "100%",
-      fontSize: '14px',
-      color: '#737380',
-      marginTop: '16px',
-
-      a: {
-        color: '#e559f9',
-        marginLeft: '5px'
-      }
-    }
-
-
-  }
 
 })
 
+const InformativePanel = styled('aside', {
+  flex: 7,
+  background: '$secondBackground',
+  color: '$text',
+  display: 'flex',
+  flexDirection: "column",
+  justifyContent: 'center',
+  padding: "2rem",
+  minHeight: '100vh',
 
+
+  h1: {
+    lineHeight: '42px',
+    fontSize: '2.25rem'
+  },
+  p: {
+    fontSize: '1.5rem',
+    lineHeight: '32px',
+    marginTop: '1rem',
+    color: '$text',
+  },
+  button: {
+    marginTop: '4rem',
+    height: '3.125rem',
+    borderRadius: '8px',
+    fontWeight: 500,
+    background: '$primaryButton',
+    color: '$text',
+    maxWidth: '20rem',
+    width: "100%",
+
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    cursor: 'pointer',
+    border: 0,
+    transition: 'filter 0.2s',
+
+
+    "&:hover": {
+      filter: 'brightness(0.9)'
+    },
+     svg:{
+       marginLeft: '16px'
+     }
+  },
+  
+  "@tablet": {
+    minHeight: "auto",
+    button: {
+      display: "none"
+    }
+
+  },
+})
+const InteractivePanel = styled("main", {
+  minHeight: '100vh',
+  flex: 8,
+  padding: "2rem",
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+
+  h1: {
+    fontSize: '1.75rem',
+    marginTop: '4rem'
+  },
+
+  h2: {
+    fontSize: '1.5rem',
+    margin: '2rem 0 1.5rem'
+  },
+
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: '20rem',
+    width: "100%",
+    input: {
+      height: '3.125rem',
+      borderRadius: '8px',
+      padding: '0 1rem',
+      background: '#fff',
+      border: '1px solid $grayMedium',
+    },
+
+    button: {
+      marginTop: '1rem',
+    }
+  },
+  p: {
+    maxWidth: '20rem',
+    width: "100%",
+    fontSize: '14px',
+    color: '$grayDark',
+    marginTop: '1rem',
+
+    a: {
+      color: '#0f62fe',
+      marginLeft: '5px'
+    }
+  }
+})
 
 export default function NewRoom() {
   const [roomName, setRoomName] = useState('');
@@ -110,6 +156,7 @@ export default function NewRoom() {
     event.preventDefault()
 
     if (roomName.trim() == "") {
+      toast.error("Add room code!")
       return;
     }
 
@@ -131,36 +178,44 @@ export default function NewRoom() {
 
   return (
     <Container>
+      <Toaster />
 
-
-      <aside>
+      <InformativePanel>
         <Image src={illustrationImg} alt="illustration" />
-        <h1>Toda pergunta tem uma resposta</h1>
-        <p>Aprenda e compartilhe conhecimento com outras pessoas</p>
-      </aside>
-      <main >
+        <h1>Every question has an answer</h1>
+        <p>Learn and share knowledge with other</p>
+        <button
+          onClick={() => window.scroll(
+            { top: window.innerHeight, behavior: 'smooth' }
+          )}>
+          Room creation
+          
+            <BsChevronDown/>
+        </button>
+      </InformativePanel>
+      <InteractivePanel >
         <Image src={logoImg} alt="logo" />
 
-        <h1>Ei, {user?.name}</h1>
-        <h2>Criar uma nova sala</h2>
+        <h1>Hey, {user?.name}</h1>
+        <h2>Create a new room</h2>
 
         <form onSubmit={handleNewRoom}>
           <input
             onChange={event => setRoomName(event.target.value)}
             type="text"
-            placeholder="Nome da sala"
+            placeholder="Room name"
             value={roomName}
           />
-          <Button type="submit">Entrar na sala</Button>
+          <Button type="submit">Join the room</Button>
         </form>
         <p>
-          Quer entrar em uma sala existente?
+         Know a room ?
           <Link href="/">
-            <a>Clique aqui</a>
+            <a>Go here</a>
           </Link>
         </p>
 
-      </main>
+      </InteractivePanel>
 
     </Container>
   )
