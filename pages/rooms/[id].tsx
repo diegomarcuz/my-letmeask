@@ -22,69 +22,34 @@ const Header = styled("header", {
   display: "flex",
   justifyContent: 'space-around',
   alignItems: 'center',
-  flexWrap: 'wrap',
+  flexFlow: 'row wrap',
   padding: '1rem 2rem',
   minHeight: '7.5rem',
-
-
-  'button': {
-    height: '40px',
-    borderRadius: '8px',
-    overflow: 'hidden',
-
-    background: '#fff',
-    border: ' 1px solid $primaryButton',
-    cursor: 'pointer',
-
-    display: 'flex',
-    margin: "12px",
-
-    'div': {
-      background: '$primaryButton',
-      padding: '5px 6px 2px 6px',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100%',
-    },
-
-    'span': {
-      display: 'block',
-      alignSelf: 'center',
-      flex: 1,
-      padding: '0 16px 0 12px',
-      width: '230px',
-      fontSize: '14px',
-      fontWeight: 500,
-    }
-
-
+  button:{
+    marginLeft: '24px'
   }
-
-
-
 
 })
 
 
 const Main = styled('main', {
   background: "$secondBackground",
-  height: 'calc(100vh - 100px)',
+  height: 'calc(100vh - 110px)',
   paddingTop: '2rem',
 
 })
 
 const SendYourQuestionSection = styled("section", {
-  margin: '0 1rem',
+  margin: '0 32px',
   "@tablet": {
     maxWidth: '45rem',
     width: '100%',
-    margin: '0 auto',
+    margin: '2rem auto',
 
   },
 
   "h2": {
-    fontSize: "20px",
+    fontSize: "2rem",
     fontWeight: 900,
   },
   "form": {
@@ -122,7 +87,8 @@ const SendYourQuestionSection = styled("section", {
           background: 'transparent',
           border: 0,
           color: '$primaryButton ',
-          textDecoration: 'underline'
+          textDecoration: 'underline',
+          cursor: "pointer"
         }
 
       },
@@ -133,7 +99,7 @@ const SendYourQuestionSection = styled("section", {
 })
 const QuestionListSection = styled("section", {
 
-  margin: '1rem',
+  margin: '0 32px',
   "@tablet": {
     maxWidth: '45rem',
     width: '100%',
@@ -142,9 +108,9 @@ const QuestionListSection = styled("section", {
   },
 
   "h2": {
-    fontSize: "20px",
+    fontSize: "1.5rem",
     fontWeight: 900,
-    marginBottom: "16px"
+    margin: "16px 0"
   }
 
 })
@@ -226,23 +192,23 @@ export default function Room() {
       <Main>
         <SendYourQuestionSection>
 
-          <h2>Sala: {title}</h2>
+          <h2>Room: {title}</h2>
 
           <form onSubmit={handleNewQuestion}>
             <textarea
-              placeholder="Faça sua pergunta"
+              placeholder="Ask your question"
               onChange={event => setNewQuestion(event.target.value)}
               value={newQuestion}
             />
             <section className="footer">
               {!user && (
                 <p>
-                  Para enviar sua pergunta,
-                  <button type="button" onClick={signIn}>faça seu login</button>.
+                  In order to send your question,
+                  <button type="button" onClick={signIn}>sign in</button>.
                 </p>
               )}
 
-              <Button disabled={!user} type="submit">Enviar pergunta</Button>
+              <Button disabled={!user} type="submit">Send the Question</Button>
 
             </section>
           </form>
@@ -261,7 +227,7 @@ export default function Room() {
                 <button
                   className={`like-button ${question.likeId ? 'liked' : ''}`}
                   type="button"
-                  aria-label="Marcar como gostei"
+                  aria-label="Like question"
                   onClick={() => handleLikeQuestion(question.id, question.likeId)}
                 >
 
