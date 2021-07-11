@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
+import Image from 'next/image'
 
-import { styled } from '@stitches/react';
+import { styled } from '../stitches.config';
 
 type QuestionProps = {
   content: string
@@ -85,7 +86,7 @@ export function Question({content, author, children}: QuestionProps) {
       <p>{content}</p>
       <Footer>
         <div className="user-info">
-          <img src={author.avatar} alt={author.name} />
+          <Image src={author.avatar} width="2rem" height="2rem" alt={author.name} />
           <span>{author.name}</span>
         </div>
         <Actions>{children}</Actions>
