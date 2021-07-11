@@ -2,6 +2,12 @@
 Centralize your questions on your room for other people during a call/live.
 This ideia was taken from [Rocketseat NLW](https://github.com/rocketseat-education/nlw-06-reactjs), but I added some different technologies as listed [below](https://github.com/diegomarcuz/my-letmeask#technologies) along with dark mode. 
 
+## Table of Contents
+- [Preview](https://github.com/diegomarcuz/my-letmeask#preview)
+- [Technologies](https://github.com/diegomarcuz/my-letmeask#technologies)
+- [Technologies from the source idea](https://github.com/diegomarcuz/my-letmeask#Technologies-from-the-source-idea)
+- [Photos](https://github.com/diegomarcuz/my-letmeask#photos)
+
 
 ## Preview
 - https://my-letmeask-e598m8rb3-diegomarcuz.vercel.app/
@@ -12,10 +18,13 @@ This ideia was taken from [Rocketseat NLW](https://github.com/rocketseat-educati
 - Stitches JS (CSS-in-JS)
 - React-hot-toast (Toast notification)
 
+## Technologies from the source idea
+- Firebase Authetication 
+- Firebase Realtime database
+- Firebase Sign in method with Google
+- Typescript
+
 ## Photos
-
-
-
 <table>
   <tr>
     <td><img src="https://user-images.githubusercontent.com/37422384/125203784-671ac200-e250-11eb-90c8-768aa3adcd19.png"/></td>
