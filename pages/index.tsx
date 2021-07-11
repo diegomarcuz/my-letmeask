@@ -91,6 +91,7 @@ const InformativePanel = styled('aside', {
 })
 
 const InteractivePanel = styled("main", {
+  minHeight: '100vh',
   flex: 8,
   padding: "2rem",
   display: 'flex',
@@ -203,12 +204,13 @@ export default function Home() {
     if (roomRef.val().endedAt) {
       toast.error('Room already closed!')
       return;
-    }
-
+    }  
     toast.success("Let's chat!!")
-    router.push(`/rooms/${roomRef.key}`)
-
-
+    if(user?.id === roomRef.val().authorId){
+      router.push(`/admin/rooms/${roomRef.key}`)
+    }else{
+      router.push(`/rooms/${roomRef.key}`)
+    }
   }
 
   return (
@@ -227,7 +229,7 @@ export default function Home() {
           onClick={() => window.scroll(
             { top: window.innerHeight, behavior: 'smooth' }
           )}>
-          Room creation
+          Room actions
           
             <BsChevronDown/>
         </button>
