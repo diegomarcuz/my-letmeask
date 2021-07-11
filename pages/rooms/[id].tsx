@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react"
 import { useRouter } from "next/router"
+import Link from 'next/link'
 import Image from 'next/image'
 import { styled } from '../../stitches.config';
 import toast, { Toaster } from 'react-hot-toast'
@@ -184,9 +185,11 @@ export default function Room() {
     <>
       <Toaster />
       <Header>
-        <a href="/">
-          <Image src={logoImg} alt="" />
-        </a>
+        <Link href="/">
+          <a >
+            <Image src={logoImg} alt="" />
+          </a>
+        </Link>
         <RoomCode code={roomId} />
       </Header>
       <Main>
